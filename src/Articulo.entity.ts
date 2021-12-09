@@ -5,7 +5,7 @@ import { BaseEntity, Column, Entity, ObjectIdColumn } from "typeorm";
 export class Articulo extends BaseEntity{
 
         @ObjectIdColumn()
-        id:number;
+        _id:string;
     
         @Column()
         item: string;

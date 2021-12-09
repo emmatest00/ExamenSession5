@@ -11,23 +11,25 @@ constructor(private readonly appService: CatalogoService) {}
  
 //http://localhost:3000/catalogo/obtenerTodo
 @Get('obtenerTodo')
-@ApiOperation({ summary: 'Devuelve solamente el nombre y el id del postulante' })
+@ApiOperation({ summary: 'Devuelve todo los productos' })
 @ApiResponse({ status: 200, type: Array })
-obtenerTodo(): object {
-  return [];
+obtenerTodo() {
+  this.appService.obtenerTodo();
 }
 
 
 //http://localhost:3000/catalogo/1
 @Get('/:id')
 @ApiParam({ name: 'id',description:'Es el id del articulo' })
+@ApiOperation({ summary: 'Devuelve un producto especifico' })
 @ApiNotFoundResponse({ description: 'No se encuentra el articulo' })
-obtenerUnArticulo(@Param('id') id: string): articuloDTO {
+obtenerUnArticulo(@Param('id') id: string) {
   return this.appService.obtenerUnArticulo(id);
 }
 
 @Post()
 @UsePipes(ValidationPipe)
+@ApiOperation({ summary: 'Agregar nuevo producto' })
 @ApiBody({ required: true, type: articuloDTO})
 agregarUnArticulo(@Body()data: articuloDTO)  {
   console.log(data);
@@ -35,12 +37,14 @@ agregarUnArticulo(@Body()data: articuloDTO)  {
 }
 
 @Patch('/:id')
+@ApiOperation({ summary: 'Actualizar producto' })
 @UsePipes(ValidationPipe)
 editarUnArticulo(@Param('id') id:string, @Body() data: articuloDTO ) {
   return this.appService.editarUnArticulo(id, data);
 }
 
 @Delete('/:id')
+@ApiOperation({ summary: 'Eliminar producto' })
 eliminarUnArticulo(@Param('id') id:string) {
   return this.appService.eliminarUnArticulo(id);
 }

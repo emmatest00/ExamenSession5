@@ -5,8 +5,8 @@ import {TypeOrmModuleOptions} from '@nestjs/typeorm';
 export const typeOrmConfig: TypeOrmModuleOptions ={
     type: 'mongodb',
     //host: '127.0.0.1',
-    host: '172.17.0.1',
-    port: 27018,
+    host: 'localhost',
+    port: 27017,
     database: "sesion3",
     entities: ['dist/**/*.entity.js'],
     synchronize: true,
