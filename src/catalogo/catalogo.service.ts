@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Articulo } from 'src/Articulo';
+import { Articulo } from 'src/Articulo.entity';
 import { articuloDTO } from 'src/articuloDTO';
 
 @Injectable()

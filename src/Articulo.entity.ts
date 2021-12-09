@@ -5,7 +5,7 @@ import { BaseEntity, Column, Entity, ObjectIdColumn } from "typeorm";
 export class Articulo extends BaseEntity{
 
         @ObjectIdColumn()
-        id: string;
+        id:number;
     
         @Column()
         item: string;
@@ -17,7 +17,7 @@ export class Articulo extends BaseEntity{
         descripcion: string;
        
         @Column()
-        LugarCompra: string;
+        LugarCompra: string[];
    
         @Column()
         fechaCompra: Date;

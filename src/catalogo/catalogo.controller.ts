@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
-import { ApiBody } from '@nestjs/swagger';
+import { ApiBody, ApiNotFoundResponse, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
 import { articuloDTO } from 'src/articuloDTO';
 import { CatalogoService } from './catalogo.service';
 
@@ -11,6 +11,8 @@ constructor(private readonly appService: CatalogoService) {}
  
 //http://localhost:3000/catalogo/obtenerTodo
 @Get('obtenerTodo')
+@ApiOperation({ summary: 'Devuelve solamente el nombre y el id del postulante' })
+@ApiResponse({ status: 200, type: Array })
 obtenerTodo(): object {
   return [];
 }
@@ -18,6 +20,8 @@ obtenerTodo(): object {
 
 //http://localhost:3000/catalogo/1
 @Get('/:id')
+@ApiParam({ name: 'id',description:'Es el id del articulo' })
+@ApiNotFoundResponse({ description: 'No se encuentra el articulo' })
 obtenerUnArticulo(@Param('id') id: string): articuloDTO {
   return this.appService.obtenerUnArticulo(id);
 }
